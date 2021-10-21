@@ -51,7 +51,7 @@ const userReducer = (state = initialState, action) =>
         draft.info = null;
         break;
       case actions.AUTH_SUCCESS:
-      case actions.SIGNUP_SUCCESS:        
+      case actions.SIGNUP_SUCCESS:
         jwtInfo = parseJwt(action.payload.token);
         localStorage.setItem('token', action.payload.token);
         draft.auth_loading = false;
@@ -63,35 +63,6 @@ const userReducer = (state = initialState, action) =>
         localStorage.clear();
         localStorage.setItem('token', null);
         draft.token = null;
-        break;
-      case actions.OTP_REQUEST:
-        draft.otp_loading = true;
-        draft.otp_error = null;
-        break;
-      case actions.OTP_FAILURE:
-        draft.otp_loading = false;
-        draft.otp_error = action.payload;
-        break;
-      case actions.OTP_SUCCESS:
-        draft.otp_loading = false;
-        draft.otp_error = null;
-        draft.username = action.payload;
-        break;
-      case actions.LOGIN_REQUEST:
-        draft.login_loading = true;
-        draft.login_error = null;
-        break;
-      case actions.LOGIN_FAILURE:
-        draft.login_loading = false;
-        draft.login_error = action.payload;
-        break;
-      case actions.LOGIN_SUCCESS:
-        jwtInfo = parseJwt(action.payload);
-        localStorage.setItem('token', action.payload);
-        draft.login_loading = false;
-        draft.login_error = null;
-        draft.token = action.payload;
-        Object.assign(draft, jwtInfo);
         break;
       case actions.PROFILE_REQUEST:
         draft.profile_loading = true;
